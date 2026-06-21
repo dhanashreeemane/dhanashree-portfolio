@@ -27,18 +27,18 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
 
-  const getReply = async (history: Message[]): Promise<string> => {
-    // TODO: replace this stub with a real call, e.g.:
-    // const res = await fetch("/api/chat", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ messages: history }),
-    // });
-    // const data = await res.json();
-    // return data.reply;
-    await new Promise((r) => setTimeout(r, 600));
-    return "This is a placeholder reply. Connect /api/chat to a real model to enable live answers.";
-  };
+const getReply = async (_history: Message[]): Promise<string> => {
+  //TODO: replace this stub with a real call, e.g.:
+  const res = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages: _history }),
+  });
+  const data = await res.json();
+  return data.reply;
+  await new Promise((r) => setTimeout(r, 600));
+  return "This is a placeholder reply. Connect /api/chat to a real model to enable live answers.";
+};
 
   const send = async () => {
     if (!input.trim() || sending) return;
